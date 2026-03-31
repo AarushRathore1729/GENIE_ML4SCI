@@ -1,0 +1,1 @@
+"""Latent diffusion starter package."""

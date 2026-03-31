@@ -1,0 +1,69 @@
+experiment:
+  seed: 42
+  device: auto
+  output_dir: outputs_tuned
+
+data:
+  file_path: quark-gluon_data-set_n139306.hdf5
+  image_key: X_jets
+  label_key: y
+  image_size: 128
+  crop_size: 125
+  batch_size: 128
+  num_workers: 0
+  pin_memory: true
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+  normalization: log_scale
+  channel_scales: [25.0, 2.0, 0.1]
+
+model:
+  in_channels: 3
+  latent_channels: 8
+  latent_size: 16
+  base_channels: 64
+  channel_multipliers: [1, 2, 4]
+  time_embedding_dim: 256
+  dropout: 0.1
+  latent_scaling_factor: 1.0
+  use_mean_latents: true
+  latent_mode_ablation: [mean, sample]
+
+autoencoder:
+  learning_rate: 0.0002
+  epochs: 30
+  kl_weight: 0.001
+  checkpoint: outputs_tuned/checkpoints/autoencoder.pt
+
+diffusion:
+  learning_rate: 0.0002
+  epochs: 100
+  num_timesteps: 500
+  beta_start: 0.0001
+  beta_end: 0.02
+  checkpoint: outputs_tuned/checkpoints/diffusion.pt
+  latent_stats_batches: 64
+  default_latent_mode: mean
+  ablation_checkpoint_template: outputs_tuned/checkpoints/diffusion_{latent_mode}.pt
+  latent_stats_log: outputs_tuned/diffusion_latent_stats.csv
+
+sampling:
+  num_steps: 500
+  output_dir: outputs_tuned/samples
+
+evaluation:
+  batch_limit: 10
+  num_visualizations: 8
+  output_dir: outputs_tuned/evaluation
+
+gnn:
+  learning_rate: 0.001
+  epochs: 30
+  hidden: 64
+  dropout: 0.3
+  k_neighbors: 8
+  max_nodes: 150
+  threshold: 0.01
+  batch_size: 64
+  checkpoint: outputs/checkpoints/gnn.pt
