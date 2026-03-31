@@ -1,0 +1,17 @@
+{
+  "roc_auc": 0.7852856962684771,
+  "accuracy": 0.7164082687338501,
+  "num_test_samples": 13932,
+  "checkpoint_epoch": 28,
+  "best_val_auc": 0.7847973637732182,
+  "confusion_matrix": [
+    [
+      4772,
+      2180
+    ],
+    [
+      1771,
+      5209
+    ]
+  ]
+}
