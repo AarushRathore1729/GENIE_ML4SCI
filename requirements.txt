@@ -1,0 +1,8 @@
+h5py>=3.11.0
+matplotlib>=3.8.0
+numpy>=1.26.0
+torch>=2.2.0
+torchvision>=0.17.0
+Pillow>=10.0.0
+PyYAML>=6.0.1
+tqdm>=4.66.0

@@ -1,0 +1,38 @@
+[build-system]
+requires = ["hatchling>=1.27.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ml4sci-genie-ldm"
+version = "0.1.0"
+description = "Latent diffusion model scaffold for the ML4SCI GENIE project."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "h5py>=3.11.0",
+    "matplotlib>=3.8.0",
+    "numpy>=1.26.0",
+    "pillow>=10.0.0",
+    "pyyaml>=6.0.1",
+    "scikit-learn>=1.3.0",
+    "scipy>=1.11.0",
+    "torch>=2.2.0",
+    "torchvision>=0.17.0",
+    "tqdm>=4.66.0",
+]
+
+[project.scripts]
+ldm-train-autoencoder = "ldm.train_autoencoder:main"
+ldm-train-diffusion = "ldm.train_diffusion:main"
+ldm-sample = "ldm.sample:main"
+ldm-eval-autoencoder = "ldm.evaluate_autoencoder:main"
+ldm-eval-diffusion = "ldm.evaluate_diffusion:main"
+ldm-run-all = "ldm.run_all:main"
+gnn-train = "gnn.train:main"
+gnn-eval = "gnn.evaluate:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ldm", "src/gnn"]
+
+[tool.uv]
+package = true
