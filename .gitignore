@@ -1,0 +1,25 @@
+# Virtual environment
+.venv/
+
+# Dataset (too large for git)
+*.hdf5
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Model checkpoints (large binaries)
+outputs/checkpoints/
+outputs_tuned/checkpoints/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# uv lock (optional, uncomment to track)
+# uv.lock
